@@ -8,20 +8,20 @@ params = '' #initializing variable. This is the argument string that we will pas
 
 machinelist = ('ultimaker', 'cupcake', 'thingomatic', 'shapercube', 'custom') #Creates a list of entries
 machine = eg.choicebox(msg='Machine type', title='Pick machine', choices=machinelist) #Creates a GUI Window for a choice in the machine list
-print 'Chosen machine :' + machine #What the user chose
+print ('Chosen machine :' + machine) #What the user chose
 
 params = params + ' --machine ' + machine #add that choice to the parameter string
 #Same pattern for the other options
 
 #Ask what MIDI input file to open
 infile = eg.fileopenbox(msg='Choose the midi file ', title=' Grab the file you want to convert', default=os.path.expanduser("~")+ "//My Documents//", filetypes = "*.mid") # the "default=os.path.expanduser("~")" gets your home forlder so you don't have top start browsing from some obscure python install folder
-print 'Opening file: ' + infile
+print ('Opening file: ' + infile)
 params = params + ' --infile ' + infile
 
 #asks where to save the output gcode file
 #for some reason this window sometimes appears behind all others
 outfile = eg.filesavebox(msg='Choose the output file ', title=' Pick where you want the gcode to arrive', default=os.path.expanduser("~")+"//My Documents//Output.gcode", filetypes = "*.gcode")
-print 'Saving to: ' +  outfile
+print ('Saving to: ' +  outfile)
 params = params + " --outfile " +  outfile
 
 #ask if the verbose should be activated
@@ -30,7 +30,7 @@ if verbose == 0:
 	 params = params + " --verbose"
 
 #prints the whole argument line
-print 'The whole command: ' + params
+print ('The whole command: ' + params)
 
 #launches mid2cnc with the argument string
 os.system ('python -i mid2cnc.py ' + params)
